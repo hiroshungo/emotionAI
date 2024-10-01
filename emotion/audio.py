@@ -1,6 +1,7 @@
 import numpy as np
 import glob
 import librosa
+import pandas
 
 def get_label(path): #感情ラベルを数値に変換
     label_name = path.split("/")[-1].split("_")[2] #ファイル名から感情を取得
