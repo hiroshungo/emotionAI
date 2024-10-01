@@ -15,7 +15,7 @@ def get_label(path): #感情ラベルを数値に変換
         label = -1
     return label
 
-paths = glob.glob("audiofailer/**/*.wav") #音声ファイルのパスを取得
+paths = glob.glob("emotion\\audiofailer/**/*.wav") #音声ファイルのパスを取得
 feature_list = [] #音響的な特徴を格納するリスト
 label_list = [] #正解データを格納するリスト
 for path in paths:
