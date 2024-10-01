@@ -1,6 +1,7 @@
 # pythonライブラリのFERを用いる
 from fer import FER
 import matplotlib.pyplot as plt
+import pandas
 
 # 感情分析に使う画像を読み込む
 test_image_one = plt.imread("face.jpg")
