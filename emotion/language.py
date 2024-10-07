@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 #データセット読み込み
-df_wrime = pd.read_table('wrime-ver1.tsv')
+df_wrime = pd.read_table('emotion\\wrime-ver1.tsv')
 df_wrime.info()
 
 #感情強度が低いサンプルを除外(0~3の内の1以下)
@@ -69,7 +69,7 @@ def compute_metrics(eval_pred):
 # 訓練時の設定
 # https://huggingface.co/docs/transformers/v4.21.1/en/main_classes/trainer#transformers.TrainingArguments
 training_args = TrainingArguments(
-    output_dir="test_trainer",
+    output_dir="emotion\\test_trainer",
     per_device_train_batch_size=8,
     num_train_epochs=1.0,
     evaluation_strategy="steps", eval_steps=200)  # 200ステップ毎にテストデータで評価する
