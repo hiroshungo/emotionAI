@@ -20,7 +20,7 @@ cv2.namedWindow('Camera')
 cam = cv2.VideoCapture(0)
 while True:
     frame = cam.read()[1]
-    frame = imutils.resize(frame,width=200)
+    frame = imutils.resize(frame,width=300)
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     faces = face_detection.detectMultiScale(gray,scaleFactor=1.1,minNeighbors=5,minSize=(30,30),flags=cv2.CASCADE_SCALE_IMAGE)
 
