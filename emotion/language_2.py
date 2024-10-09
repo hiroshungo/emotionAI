@@ -9,7 +9,7 @@ tokenizer = AutoTokenizer.from_pretrained('christian-phu/bert-finetuned-japanese
 nlp = pipeline('sentiment-analysis', model=model, tokenizer=tokenizer, truncation=True)
 
 # 分析対象となるテキストのリスト
-texts = ['あなたを愛してます', '殺す', 'あなたはつまらない']
+texts = ['あなたを愛してます', '今日は雨ですね', 'あなたはつまらない']
 
 # 各テキストに対して感情分析を実行
 for text in texts:
@@ -23,6 +23,8 @@ for text in texts:
 
     # 最も高い確率の感情ラベルを取得
     sentiment_label = model.config.id2label[torch.argmax(probabilities).item()]
+    
+
 
     print('テキスト：{}'.format(text))
     print('感情：{}'.format(sentiment_label))
@@ -31,5 +33,7 @@ for text in texts:
     # positiveまたはnegativeの場合はその確率を表示、neutralの場合はpositiveとnegativeの最大値を表示
     if ((sentiment_label == 'positive') or (sentiment_label == 'negative')):  
         print('感情スコア：{}'.format(max(probabilities)))
+        print(format(probabilities[0]),format(probabilities[1]),format(probabilities[2]))
     else:
         print('感情スコア：{}'.format(max(probabilities[0], probabilities[2])))
+        print(format(probabilities[0]),format(probabilities[1]),format(probabilities[2]))

@@ -34,13 +34,32 @@ X_train_std = sc.fit_transform(X_train)
 X_test_std = sc.fit_transform(X_test)
 
 from sklearn.svm import LinearSVC
-svm = LinearSVC()
-svm.fit(X_train_std, Y_train)
-
+model = LinearSVC()
+model.fit(X_train_std, Y_train)
+import pickle
+# モデルを保存する
+filename = 'emotion\\model.sav'
+pickle.dump(model, open(filename, 'wb'))
 from sklearn.metrics import accuracy_score
 
-Y_pred_train = svm.predict(X_train_std)
-Y_pred_test = svm.predict(X_test_std)
+loaded_model = pickle.load(open(filename, 'rb'))
+Y_pred_train = loaded_model.predict(X_train_std)
+Y_pred_test = loaded_model.predict(X_test_std)
+
 train_accuracy = accuracy_score(Y_train, Y_pred_train)
 test_accuracy = accuracy_score(Y_test, Y_pred_test)
 print("Train accuracy: {}%, Test accuracy: {}%".format(train_accuracy, test_accuracy))
+
+
+
+
+#追加
+# path1 = glob.glob("emotion\\audiofailer\\fujitou_angry\\fujitou_angry_001.wav") #音声ファイルのパスを取得
+# feature_list = [] #音響的な特徴を格納するリスト
+# label_list = [] #正解データを格納するリスト
+# for path2 in path1:
+#     y, sr = librosa.load(path2, sr=16000) #音声ファイルの読み込み
+#     mfcc = librosa.feature.mfcc(y=y,sr=sr,n_mfcc=13) #MFCCを取得
+#     feature_list.append(np.mean(mfcc, axis=1))#各次元の平均を取得
+#     label = get_label(path2)
+#     label_list.append(label)
