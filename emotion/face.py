@@ -10,3 +10,4 @@ emo_detector = FER(mtcnn=True)
 dominant_emotion, emotion_score = emo_detector.top_emotion(test_image_one)
 plt.imshow(test_image_one)
 print(dominant_emotion, emotion_score)
+
