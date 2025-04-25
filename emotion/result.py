@@ -11,14 +11,14 @@ import wave
 import pyaudio
 import concurrent.futures
 
+print("------------------モデルの読み込みをします-------------------")
+
 #---------------感情分析---------------------
 import librosa
 import numpy as np
 import pickle
 import torch
 from transformers import pipeline, AutoModelForSequenceClassification, AutoTokenizer
-
-print("------------------モデルの読み込みをします-------------------")
 
 #---------------感情分析モデル読み込み---------------------
 
@@ -33,8 +33,6 @@ tokenizer = AutoTokenizer.from_pretrained('christian-phu/bert-finetuned-japanese
 nlp = pipeline('sentiment-analysis', model=model, tokenizer=tokenizer, truncation=True)
 print(nlp)
 #---------------終わり---------------------
-
-print("------------------モデルの読み込みが終わりました-------------------")
 
 
 
@@ -76,6 +74,9 @@ stream = audio.open(format=FORMAT,
                     frames_per_buffer=CHUNK)
 
 executor = concurrent.futures.ThreadPoolExecutor(max_workers=2)
+
+
+print("------------------モデルの読み込みが終わりました-------------------")
 
 
 
