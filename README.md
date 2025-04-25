@@ -30,6 +30,7 @@ positive or negative<br/>
 
 # 注意事項
 最初の方は不安定<br/>
+tmpフォルダの中身がないか確認<br/>
 
 
 
