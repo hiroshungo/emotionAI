@@ -10,7 +10,7 @@ import speech_recognition as sr
 import wave
 import pyaudio
 import concurrent.futures
-<<<<<<< HEAD
+
 #---------------感情分析---------------------
 import librosa
 import numpy as np
@@ -30,9 +30,6 @@ tokenizer = AutoTokenizer.from_pretrained('christian-phu/bert-finetuned-japanese
 nlp = pipeline('sentiment-analysis', model=model, tokenizer=tokenizer, truncation=True)
 
 #---------------終わり---------------------
-
-=======
->>>>>>> cff3b0f6aeb9d029cc63eb3ab647f7198c319b75
 
 HALLUCINATION_TEXTS = [
     "ご視聴ありがとうございました", "ご視聴ありがとうございました。",
@@ -168,8 +165,8 @@ class FileHandler(FileSystemEventHandler):
                 # 最終ファイルの場合、そのまま出力
                 print(transcription)
 
-<<<<<<< HEAD
-                #------------感情分析の予測を行う---------------
+
+            #------------感情分析の予測を行う---------------
 
             #音声ファイルのパスを取得
                 # path = "emotion\\audiofailer\\tsuchiya_angry\\tsuchiya_angry_006.wav"
@@ -197,9 +194,9 @@ class FileHandler(FileSystemEventHandler):
             # 最も高い確率の感情ラベルを取得
                 sentiment_label = model.config.id2label[torch.argmax(probabilities).item()]
 
-                print(ans)
-                print('テキスト：{}'.format(texts))
-                print('感情：{}'.format(sentiment_label))
+                # print(ans)
+                # print('テキスト：{}'.format(texts))
+                # print('感情：{}'.format(sentiment_label))
 
             # -----------------------感情によって色判別------------------------------------
                 if sentiment_label == "positive" :
@@ -230,11 +227,6 @@ class FileHandler(FileSystemEventHandler):
                         color = "青"
                         print(color)
             # -----------------------終わり------------------------------------
-=======
-                """
-                この部分で韻律解析およびモデルによる予測を行う
-                """
->>>>>>> cff3b0f6aeb9d029cc63eb3ab647f7198c319b75
 
             else:
                 # 喋っている途中の文字起こしは《》で囲う
