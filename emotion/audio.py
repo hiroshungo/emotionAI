@@ -31,20 +31,25 @@ Y_train, Y_test, X_train, X_test = train_test_split(label_list, feature_list, te
 from sklearn.preprocessing import StandardScaler
 sc = StandardScaler()
 X_train_std = sc.fit_transform(X_train)
+print(X_test)
 X_test_std = sc.fit_transform(X_test)
 
 from sklearn.svm import LinearSVC
 model = LinearSVC()
-model.fit(X_train_std, Y_train)
+model.fit(X_train, Y_train)
 import pickle
 # モデルを保存する
 filename = 'emotion\\model.sav'
 pickle.dump(model, open(filename, 'wb'))
 from sklearn.metrics import accuracy_score
 
+with open('model.pickle', mode='wb') as f:
+    pickle.dump(model,f,protocol=2)
+
 loaded_model = pickle.load(open(filename, 'rb'))
-Y_pred_train = loaded_model.predict(X_train_std)
-Y_pred_test = loaded_model.predict(X_test_std)
+Y_pred_train = loaded_model.predict(X_train)
+Y_pred_test = loaded_model.predict(X_test)
+print(Y_pred_test)
 
 train_accuracy = accuracy_score(Y_train, Y_pred_train)
 test_accuracy = accuracy_score(Y_test, Y_pred_test)
