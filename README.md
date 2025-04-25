@@ -11,6 +11,7 @@ result.pyを実行
 result.py = リアルタイム感情分析(言語、韻律)<br/>
 audio.py = 韻律感情分析モデルの作成<br/>
 motionAI.py = 感情分析テスト<br/>
+model.pickle = 作成した韻律感情分析モデル<br/>
 
 
 # 感情分析詳細
