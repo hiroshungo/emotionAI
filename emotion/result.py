@@ -18,6 +18,8 @@ import pickle
 import torch
 from transformers import pipeline, AutoModelForSequenceClassification, AutoTokenizer
 
+print("------------------モデルの読み込みをします-------------------")
+
 #---------------感情分析モデル読み込み---------------------
 
 # 韻律感情分析モデルの読み込み
@@ -26,10 +28,16 @@ with open('model.pickle', mode='rb') as f:
 # 事前学習済みの日本語感情分析モデルとそのトークナイザをロード
 model = AutoModelForSequenceClassification.from_pretrained('christian-phu/bert-finetuned-japanese-sentiment')
 tokenizer = AutoTokenizer.from_pretrained('christian-phu/bert-finetuned-japanese-sentiment', model_max_lentgh=512)
+
 # 感情分析のためのパイプラインを設定
 nlp = pipeline('sentiment-analysis', model=model, tokenizer=tokenizer, truncation=True)
-
+print(nlp)
 #---------------終わり---------------------
+
+print("------------------モデルの読み込みが終わりました-------------------")
+
+
+
 
 HALLUCINATION_TEXTS = [
     "ご視聴ありがとうございました", "ご視聴ありがとうございました。",
@@ -68,6 +76,8 @@ stream = audio.open(format=FORMAT,
                     frames_per_buffer=CHUNK)
 
 executor = concurrent.futures.ThreadPoolExecutor(max_workers=2)
+
+
 
 def record_audio(audio_directory):
     frames = []
