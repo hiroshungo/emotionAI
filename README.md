@@ -24,8 +24,13 @@ motionAI.py = 感情分析テスト<br/>
 positive or negative<br/>
 
 
-#色分け
+# 色分け
 不明<br/>
+
+
+# 注意事項
+最初の方は不安定<br/>
+
 
 
 
