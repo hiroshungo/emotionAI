@@ -54,7 +54,7 @@ RATE = 44100
 CHUNK = 1024
 SILENCE_THRESHOLD = 50 # 無音判定のしきい値
 SILENCE_DURATION = 0.2  # 無音判定する持続時間 (秒)
-OUT_DURATION = 0.5 # 強制的に途中出力する時間(秒)
+OUT_DURATION = 1.0 # 強制的に途中出力する時間(秒)
 MIN_AUDIO_LENGTH = 0.1  # 最小音声長 (秒)
 
 # PyAudioインスタンス作成
@@ -169,23 +169,18 @@ class FileHandler(FileSystemEventHandler):
             #------------感情分析の予測を行う---------------
 
             #音声ファイルのパスを取得
-                # path = "emotion\\audiofailer\\tsuchiya_angry\\tsuchiya_angry_006.wav"
                 path = file_path
                 feature_list = [] #音響的な特徴を格納するリスト
                 y, sr = librosa.load(path, sr=16000) #音声ファイルの読み込み
                 mfcc = librosa.feature.mfcc(y=y,sr=sr,n_mfcc=13) #MFCCを取得
                 feature_list.append(np.mean(mfcc, axis=1))#各次元の平均を取得
 
-            #モデルの読み込み
-                # with open('model.pickle', mode='rb') as f:
-                #     clf = pickle.load(f)
             #モデルを用いた予測
                 ans = clf.predict(feature_list)
             # -----------------------結果-------------------------------
 
             # 分析対象となるテキストのリスト
                 texts = transcription
-                # texts = ['私は嬉しい']
                 inputs = tokenizer(texts, padding=True, truncation=True, return_tensors='pt', max_length=512)
                 outputs = model(**inputs)
                 logits = outputs.logits
@@ -193,7 +188,6 @@ class FileHandler(FileSystemEventHandler):
                 probabilities = torch.softmax(logits, dim=1)[0]
             # 最も高い確率の感情ラベルを取得
                 sentiment_label = model.config.id2label[torch.argmax(probabilities).item()]
-
                 # print(ans)
                 # print('テキスト：{}'.format(texts))
                 # print('感情：{}'.format(sentiment_label))
@@ -226,6 +220,7 @@ class FileHandler(FileSystemEventHandler):
                     if ans == [0]:
                         color = "青"
                         print(color)
+
             # -----------------------終わり------------------------------------
 
             else:
