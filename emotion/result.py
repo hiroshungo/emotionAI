@@ -53,7 +53,7 @@ CHANNELS = 1
 RATE = 44100
 CHUNK = 1024
 SILENCE_THRESHOLD = 50 # 無音判定のしきい値
-SILENCE_DURATION = 0.2  # 無音判定する持続時間 (秒)
+SILENCE_DURATION = 0.6  # 無音判定する持続時間 (秒)
 OUT_DURATION = 1.0 # 強制的に途中出力する時間(秒)
 MIN_AUDIO_LENGTH = 0.1  # 最小音声長 (秒)
 
